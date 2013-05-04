@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  case_id: 1
+  summary: MyString
+  author: MyString
+  status: MyString
+  report: 
+
+two:
+  case_id: 1
+  summary: MyString
+  author: MyString
+  status: MyString
+  report: 
