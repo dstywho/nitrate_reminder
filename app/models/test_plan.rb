@@ -20,7 +20,7 @@ class TestPlan < ActiveRecord::Base
   attr_accessible :external_id, :name
   has_many :report_definition_test_plans
   has_many :report_definitions, :through => :report_definition_test_plans 
-  before_save :fetch_from_tcms
+  before_validation :fetch_from_tcms
   
   include ActiveModel::Validations
   validates_with MyValidator

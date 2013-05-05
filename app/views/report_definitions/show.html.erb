@@ -1,10 +1,13 @@
+<h1>Report Definition: <%= @report_definition.name %> </h1>
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Name:</b>
   <%= @report_definition.name %>
-  <%= render :partial => 'test_plans/form', :locals => {:@test_plan => TestPlan.new } %>
+  <h2>test plans</h2>
   <%= render :template=> 'test_plans/index', :locals => {:@test_plans => @report_definition.test_plans } %>
+  Add an additional test plan
+  <%= render :partial => 'test_plans/form', :locals => {:@test_plan => TestPlan.new, :report_definition => @report_definition } %>
 </p>
 
 
