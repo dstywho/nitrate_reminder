@@ -1,4 +1,7 @@
 TcmsNotify::Application.routes.draw do
+  resources :test_plans
+
+
   resources :report_definition_test_plans
 
 

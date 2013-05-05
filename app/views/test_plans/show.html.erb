@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>External:</b>
+  <%= @test_plan.external_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @test_plan.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_plan_path(@test_plan) %> |
+<%= link_to 'Back', test_plans_path %>
