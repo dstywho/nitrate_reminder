@@ -2,3 +2,8 @@ TCMS REPORT
 =================
 Requsting action on test cases for plan
 <%= @report.display_diff %>
+
+Velocity (#test cases confirmed / days ): <%= @report.velocity_in_days %>
+
+Number of Test Cases Created in the last week: <%= @report.test_cases_created_in_last_week %>
+Number of Test Cases Confirmed in the last week: <%= @report.test_cases_complete_in_last_week %>

@@ -2,7 +2,61 @@ class Report < ActiveRecord::Base
   has_many :test_cases
   belongs_to :report_definition
   attr_accessible :report_definition_id, :report_definition
-  #
+
+  def test_cases_complete_in_last_week
+    test_cases_complete_since(created_at - 7.days)
+  end
+
+  def test_cases_complete_since(starttime)
+    initials = first_non_final_testcase_in_history(starttime)
+    current_confirmed_testcases( initials.map(&:case_id) )
+  end
+
+  def test_cases_created_in_last_week
+    test_cases_created_since(created_at - 7.days)
+  end
+
+  def test_cases_created_since(starttime)
+    first_non_final_testcase_in_history.having('min(test_cases.created_at) >= ?', starttime).all
+  end
+
+  def velocity_in_days
+    return velocity * 24 * 60 * 60 
+  end
+
+  def velocity_in_weeks
+    return velocity * 604800
+  end
+
+  #num_tcs/seconds
+  def velocity
+    num_test_cases_finalized = 0 #seconds
+    total_time_elapsed = 0
+    initials = first_non_final_testcase_in_history
+    currents = current_confirmed_testcases( initials.map(&:case_id) )
+    currents.each do |current_test_case|
+      initial_test_case  = initials.find{|t| t.case_id = current_test_case.case_id }
+      if initial_test_case
+        num_test_cases_finalized += 1 
+        total_time_elapsed += current_test_case.created_at - initial_test_case.created_at
+      end
+    end
+    puts num_test_cases_finalized
+    puts total_time_elapsed
+    return total_time_elapsed != 0 ? (num_test_cases_finalized / total_time_elapsed ) :  num_test_cases_finalized
+  end
+
+  def current_confirmed_testcases(case_ids)
+    test_cases.where('case_id in (?) and status = ?', case_ids, "CONFIRMED")
+  end
+
+  def first_non_final_testcase_in_history(limit_date = Time.now - 1.years)
+    TestCase.joins(:report => :report_definition)
+      .select("case_id, min(test_cases.created_at), test_cases.created_at")
+      .group(:case_id)
+      .where('status <> ? and report_definition_id = ? and test_cases.created_at > ?', 'CONFIRMED', report_definition_id, limit_date)
+  end
+
 
   def get_latest_test_cases
     report_definition.test_plans.each do |test_plan|

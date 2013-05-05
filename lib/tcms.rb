@@ -11,7 +11,7 @@ class Tcms
         remove_const(:ENABLE_NIL_PARSER)
         const_set(:ENABLE_NIL_PARSER, true)
     }
-    @server = XMLRPC::Client.new("tcms.engineering.redhat.com", "/xmlrpc/",443, nil, nil,'-----', '------', true,nil)
+    @server = XMLRPC::Client.new("tcms.engineering.redhat.com", "/xmlrpc/",443, nil, nil,'------','---------',true,nil)
     @server.instance_variable_get(:@http).instance_variable_set(:@verify_mode, OpenSSL::SSL::VERIFY_NONE)
   end
 

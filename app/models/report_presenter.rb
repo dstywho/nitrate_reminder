@@ -1,6 +1,11 @@
 class ReportPresenter
+
   def initialize(report)
     @report = report
+  end
+
+  def method_missing(sym, *args, &block)
+    @report.send sym, *args, &block
   end
 
   def display_diff
@@ -10,5 +15,6 @@ class ReportPresenter
     end
     result
   end
+
 
 end
