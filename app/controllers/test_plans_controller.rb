@@ -41,6 +41,7 @@ class TestPlansController < ApplicationController
   # POST /test_plans.json
   def create
     @test_plan = TestPlan.new(params[:test_plan])
+    @test_plan.report_definitions << ReportDefinition.find(params[:report_definition_id]) if params[:report_definition_id]
 
     respond_to do |format|
       if @test_plan.save
