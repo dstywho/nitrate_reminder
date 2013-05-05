@@ -3,6 +3,8 @@
 <p>
   <b>Name:</b>
   <%= @report_definition.name %>
+  <%= render :partial => 'test_plans/form', :locals => {:@test_plan => TestPlan.new } %>
+  <%= render :template=> 'test_plans/index', :locals => {:@test_plans => @report_definition.test_plans } %>
 </p>
 
 
