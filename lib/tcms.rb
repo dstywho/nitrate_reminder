@@ -20,6 +20,10 @@ class Tcms
     #"7332"
     @server.call("TestPlan.get_test_cases", testplan)
   end
+
+  def test_plan(id)
+    @server.call("TestPlan.get", id)
+  end
 end
 
 tcms = Tcms.new
