@@ -1,0 +1,25 @@
+<h1>Listing report_definition_test_plans</h1>
+
+<table>
+  <tr>
+    <th>Report definition</th>
+    <th>Test plan</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @report_definition_test_plans.each do |report_definition_test_plan| %>
+  <tr>
+    <td><%= report_definition_test_plan.report_definition %></td>
+    <td><%= report_definition_test_plan.test_plan %></td>
+    <td><%= link_to 'Show', report_definition_test_plan %></td>
+    <td><%= link_to 'Edit', edit_report_definition_test_plan_path(report_definition_test_plan) %></td>
+    <td><%= link_to 'Destroy', report_definition_test_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Report definition test plan', new_report_definition_test_plan_path %>

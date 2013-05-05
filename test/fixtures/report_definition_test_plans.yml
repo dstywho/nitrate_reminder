@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  report_definition: 
+  test_plan: 
+
+two:
+  report_definition: 
+  test_plan: 

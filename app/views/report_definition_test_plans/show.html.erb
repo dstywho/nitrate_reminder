@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Report definition:</b>
+  <%= @report_definition_test_plan.report_definition %>
+</p>
+
+<p>
+  <b>Test plan:</b>
+  <%= @report_definition_test_plan.test_plan %>
+</p>
+
+
+<%= link_to 'Edit', edit_report_definition_test_plan_path(@report_definition_test_plan) %> |
+<%= link_to 'Back', report_definition_test_plans_path %>
