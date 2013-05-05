@@ -3,7 +3,7 @@ class ReportMailer < ActionMailer::Base
 
   def report(report)
     @report = ReportPresenter.new(report)
-    mail(:to => 'dstywho@gmail.com', :subject =>"TCMS Test Case Review Reminder")
+    mail(:to => report.report_definition.emails.split(/\s*,\s*/), :subject =>"TCMS Test Case Review Reminder")
   end
 
 end
