@@ -8,6 +8,8 @@
   <%= render :template=> 'test_plans/index', :locals => {:@test_plans => @report_definition.test_plans } %>
   Add an additional test plan
   <%= render :partial => 'test_plans/form', :locals => {:@test_plan => TestPlan.new, :report_definition => @report_definition } %>
+  <%= render :template=> 'reports/index', :locals => {:@reports => @report_definition.reports} %>
+  <%= render :partial => 'reports/form', :locals => {:@report => Report.new(:report_definition => @report_definition) } %>
 </p>
 
 

@@ -44,6 +44,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
+        @report.get_latest_test_cases
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
         format.json { render json: @report, status: :created, location: @report }
       else

@@ -9,6 +9,8 @@
 
 <% @reports.each do |report| %>
   <tr>
+    <td><%= report.created_at %></td>
+    <td><%= display_diff(report.status_diff) %></td>
     <td><%= link_to 'Show', report %></td>
     <td><%= link_to 'Edit', edit_report_path(report) %></td>
     <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
