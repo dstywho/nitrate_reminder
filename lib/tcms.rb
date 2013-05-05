@@ -26,6 +26,3 @@ class Tcms
   end
 end
 
-tcms = Tcms.new
-puts tcms.get_test_cases('7332')
-
