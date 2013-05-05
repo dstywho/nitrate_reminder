@@ -27,7 +27,7 @@ class Report < ActiveRecord::Base
   end
 
   def previous_report
-    Report.where('created_at < ?', self.created_at).order('created_at desc').first
+    Report.where('report_definition_id = ? and created_at < ?', report_definition.id, self.created_at).order('created_at desc').first
   end
 
   def status_diff
@@ -47,7 +47,7 @@ class Report < ActiveRecord::Base
       current = self.send(method_name)
       result = {}
       current.each do |status, count|
-        diff = prev ? prev[status].to_i - count.to_i : 0
+        diff = prev ? count.to_i - prev[status].to_i : 0
         result[status] = {count: count, diff: diff}
       end
      result 
